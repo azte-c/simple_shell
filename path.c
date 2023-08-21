@@ -4,6 +4,8 @@
 #include <unistd.h>
 #include "shell.h"
 
+#define MAX_PATHS 200
+
 /**
  *get_path - checks the path to be followed into directories
  *@argsv: arrays of strings forming the command
@@ -21,7 +23,8 @@ void get_path(char *argsv[], int *args_count)
 	}
 
 	delimiter = ":";
-	tokenize_path = strtok(NULL, delimiter);
+	/*change NULL to path*/
+	tokenize_path = strtok(path, delimiter);
 
 	while (tokenize_path != NULL)
 	{
