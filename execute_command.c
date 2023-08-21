@@ -12,15 +12,21 @@
 
 void execute_command(char *user_input)
 {
+/*the fork system call creates a child process and execve executes a specified command*/
+	/*the return value of the fork is stored iin the process_id*/
 	pid_t process_id = fork();
-
+/*this means an error occured*/
 	if (process_id == -1)
 	{
 		perror("fork");
 		exit(-1);
 	}
+/*this means that is the child process*/
+/*this block of code is then executed by the child process*/
 	else if (process_id == 0)
 	{
+/*this alloactes memory to hold the command the user inputs*/
+/*it holds the command and a null terminator */
 		char **arguments = (char **)malloc(sizeof(char *) * 2);
 
 		if (arguments == NULL)
@@ -30,12 +36,14 @@ void execute_command(char *user_input)
 		}
 		arguments[0] = user_input;
 		arguments[1] = NULL;
-
+/*the execve function replaces the current process with the specified command */ 
 		execve(user_input, arguments, NULL);
 		perror("execve");
 		exit(-1);
 		free(*arguments);
 	}
+/*this block is executed by the parent processand it waits for the chiid process to finish */
+
 	else
 	{
 		wait(NULL);

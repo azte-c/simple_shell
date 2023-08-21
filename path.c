@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+<<<<<<< HEAD
 #include <string.h>
 #include <unistd.h>
 #include "shell.h"
@@ -47,3 +48,26 @@ int get_path(void)
 }
 return (0);
 }
+=======
+#include <unistd.h>
+
+int main(void)
+{
+	/*getenv retrives the value of an environment variable*/
+	char *command = "pwd";
+	char *path = getenv("PATH");
+	char *copy_path = strdup(path);
+
+	if (path)
+	{
+		char *token = strok(copy_path, ":");
+		while (token != NULL)
+		{
+			char *command_path = malloc(strlen(token) + strlen(command) + 2);
+			if (command_path)
+			{
+				sprintf(command_path, "%s/%s", token, command);
+				/*access is 
+				if (access(	
+
+>>>>>>> 4f89592dcc4b40c1c65fa4802301bc4b11f692dd
