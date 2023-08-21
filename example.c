@@ -2,25 +2,15 @@
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
-<<<<<<< HEAD
 #include "shell.h"
-
-/**
-
-
-  */
-=======
 #include <stdbool.h>
 #include <math.h>
-
 
 /**
  * this rogram is to be used as a blue print for the whole shell project
  * what it does is replicate the functions to a simpler state
  * and i will explain what each segment tries to replicate
  */
-
->>>>>>> 4f89592dcc4b40c1c65fa4802301bc4b11f692dd
 
 int main(void)
 {
