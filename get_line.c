@@ -25,21 +25,25 @@ ssize_t get_line(char *captured_input, size_t buffer_size,
 	for (y = 0; y < buffer_size && captured_input[y] != '\0'; y++)
 		buffer[y] = captured_input[y];
 	current_buffer_pos = 0;
-	current_buffer_size = 0;
+	current_buffer_size = buffer_size;
 	/* If the buffer is empty, read data from the input stream into the buffer */
-	new_line_pos = current_buffer_pos; /*Get pos of the newline xter  in buffer */
+	length_of_line = 0;
+	new_line_pos = current_buffer_pos + length_of_line;
 
 	while (new_line_pos < current_buffer_size && buffer[new_line_pos] != '\n')
 		new_line_pos++;
 
 	length_of_line = new_line_pos - current_buffer_pos;
-	new_size = *n + length_of_line + 1;  /** Calculate the length of the line */
+	new_size = length_of_line + 1;  /** Calculate the length of the line */
 	new_line = malloc(new_size);     /* Allocate memory for the line */
 
 	if (new_line == NULL)
 		return (-1);
-	for (x = 0; x < *n; x++)   /* Copy data from the buffer to the new buffer */
-		new_line[*n + 1] = buffer[current_buffer_pos + x];
+	for (x = 0; x < length_of_line; x++)
+	{
+		new_line[x] = buffer[current_buffer_pos + x];
+	}
+
 	new_line[new_size - 1] = '\0';   /* Null terminate the line */
 
 	free(*line_ptr);                 /* Free the old buffer */

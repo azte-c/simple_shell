@@ -5,44 +5,48 @@
 #include <sys/types.h>
 #include "shell.h"
 
+#define BUFFER_SIZE 1024
 /**
  *capture_input - prompts the user and captures the input
- *@prompt_user: stores the prompt to be displayed to the user
- *@user_input: stores the user's input(command)
- *@input_bytes: store the number of bytes from the user's input
+ *@user_input_ptr:pointer to the user input
+ *@input_bytes_ptr: pointer to the input bytes
  */
-
-void capture_input(char **prompt_user, char **user_input, ssize_t *input_bytes)
+void capture_input(char **user_input_ptr, ssize_t *input_bytes_ptr)
 {
-	*prompt_user = (char *)malloc(sizeof(char) * 2);
-	(*prompt_user)[0] = '#';
-	(*prompt_user)[1] = '\0';
-/*what happens here if the file is not opened correctly ? what will be outputed?*/
-/*here we write out the contents of the prompt user */
-/*what is the return value of te write function */
-	write(STDOUT_FILENO, *prompt_user, 1);
-/*here we dynamically allocate memory for this variable to hold whatever the user inputs in the prompt */
-	*user_input = (char *)malloc(sizeof(char) * 256);
+	char *prompt_user, *user_input;
+	ssize_t input_bytes;
 
-	if (*user_input == NULL)
+	prompt_user = (char *)malloc(sizeof(char) * 2);
+	prompt_user[0] = '#';
+	prompt_user[1] = '\0';
+
+	write(STDOUT_FILENO, prompt_user, 1);
+	user_input = (char *)malloc(sizeof(char) * BUFFER_SIZE);
+
+	if (user_input == NULL)
 	{
 		perror("malloc");
 		exit(-1);
 	}
-/*this function  read captures user input from the standard input into memory pointed to by *user input */
-/*the number of bytes read is stored into the input_bytes variable */
-	*input_bytes = read(STDIN_FILENO, *user_input, 256);
-/*this just shows that the user pressed enter without keyeing in anything */
-	if (*input_bytes == 0)
+	input_bytes = read(STDIN_FILENO, user_input, BUFFER_SIZE);
+
+	if (input_bytes == 0)
 	{
 		write(STDOUT_FILENO, "\n", 1);
+		free(prompt_user);
+		free(user_input);
 		exit(0);
 	}
-/*this shows there was an error while reading input*/
-	else if (*input_bytes == -1)
+	else if (input_bytes == -1)
 	{
 		perror("read");
+		free(prompt_user);
+		free(user_input);
 		exit(-1);
 	}
-	(*user_input)[*input_bytes - 1] = '\0';
+	user_input[input_bytes - 1] = '\0';
+	free(prompt_user);
+
+	*user_input_ptr = user_input;
+	*input_bytes_ptr = input_bytes;
 }
