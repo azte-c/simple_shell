@@ -1,5 +1,8 @@
 #ifndef SHELL_H
 #define SHELL_H
+
+#include <unistd.h>
+#include <stddef.h>
 /* the ssize_t type an error message*/
 
 void capture_input(char **user_input_ptr, ssize_t *input_bytes_ptr);

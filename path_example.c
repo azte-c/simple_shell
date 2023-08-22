@@ -32,7 +32,7 @@ int main (void)
 
 	/*search for executable in each path */
 
-	for ( i = 0; i < sizeof(commands) / sizeof(commands[0]); i++)
+	for ( i = 0; (size_t)i < sizeof(commands) / sizeof(commands[0]); i++)
 	{
 		 PathNode *current = head;
 
@@ -62,8 +62,8 @@ int main (void)
 			current = current->next;
 		}
 	}
-	//free linked list memory
-	PathNode *current = head;
+	/*free linked list memory*/
+	*current = head;
 	while (current != NULL)
 	{
 		PathNode *temp = current;
