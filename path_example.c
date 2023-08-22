@@ -11,14 +11,15 @@ typedef struct PathNode {
 int main (void)
 {
 	/*below we can use arg_vectors*/
-	const char *commands[] = { "echo", "ls"};
+	const char *commands[] = { "pwd"};
+	/*the getenve function */
 	char *path  = getenv("PATH");
 	pid_t child_pid;
 	char *path_copy = strdup(path);
 	char *path_tokens = strtok(path_copy, ":");
 	int i;
 	PathNode *head = NULL;
-
+	/*the problem with the new line might be here*/
 	while (path_tokens != NULL)
 	{
 		PathNode *new_node = malloc(sizeof(PathNode));

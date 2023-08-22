@@ -15,7 +15,7 @@ void get_path(char *argsv[], int *args_count)
 {
 	char *path = getenv("PATH");
 	char *delimiter, *tokenize_path;
-
+	/*this should work perfectly*/
 	if (path == NULL)
 	{
 		perror("getenv");

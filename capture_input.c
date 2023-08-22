@@ -13,21 +13,27 @@
  */
 void capture_input(char **user_input_ptr, ssize_t *input_bytes_ptr)
 {
-	char *prompt_user, *user_input;
-	ssize_t input_bytes;
+	/*promp_user will store what to display to user*/ 
+	char *prompt_user, *user_input;/*user_input will hold input from user*/
+	ssize_t input_bytes;/* store the number of bytes read*/
 
 	prompt_user = (char *)malloc(sizeof(char) * 2);
 	prompt_user[0] = '#';
 	prompt_user[1] = '\0';
 
+	/*writes out the prompt to be displayed*/
 	write(STDOUT_FILENO, prompt_user, 1);
+
+	/*dynamically allocate memory to user input to hold the users input*/
 	user_input = (char *)malloc(sizeof(char) * BUFFER_SIZE);
 
+	/*this checks if the memory was allocated sucessfully*/
 	if (user_input == NULL)
 	{
 		perror("malloc");
 		exit(-1);
 	}
+	/*the read function reads input from the keyboard into user input*/
 	input_bytes = read(STDIN_FILENO, user_input, BUFFER_SIZE);
 
 	if (input_bytes == 0)
