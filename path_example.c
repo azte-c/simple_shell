@@ -8,17 +8,15 @@ typedef struct PathNode {
 	struct PathNode *next;
 } PathNode;
 
-int main (void)
+int get_path(char **argsv, int args_count)
 {
-	/*below we can use arg_vectors*/
-	const char *commands[] = { "pwd"};
-	/*the getenve function */
 	char *path  = getenv("PATH");
 	pid_t child_pid;
 	char *path_copy = strdup(path);
 	char *path_tokens = strtok(path_copy, ":");
 	int i;
 	PathNode *head = NULL;
+	PathNode *current;
 	/*the problem with the new line might be here*/
 	while (path_tokens != NULL)
 	{
@@ -32,21 +30,21 @@ int main (void)
 
 	/*search for executable in each path */
 
-	for ( i = 0; (size_t)i < sizeof(commands) / sizeof(commands[0]); i++)
+	for ( i = 0; i < args_count; i++)
 	{
-		 PathNode *current = head;
+		current = head;
 
 		while (current != NULL)
 		{
 			char full_path[300];
-			snprintf(full_path, sizeof(full_path), "%s/%s", current->path, commands[i]);
+			snprintf(full_path, sizeof(full_path), "%s/%s", current->path, argsv[i]);
 
 			if (access(full_path, X_OK) == 0)
 			{
 				child_pid = fork();
 				if (child_pid == 0)
 				{
-					execl(full_path, commands[i], NULL);
+					execl(full_path, argsv[i], NULL);
 					perror("exec");
 					exit(-1);
 				}
@@ -59,11 +57,15 @@ int main (void)
 				printf("found executable: %s \n", full_path);
 				break;
 			}
+			else
+				printf("Executable: %s not found \n", full_path);
+
 			current = current->next;
 		}
 	}
 	/*free linked list memory*/
-	*current = head;
+	current = head;
+
 	while (current != NULL)
 	{
 		PathNode *temp = current;

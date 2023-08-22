@@ -17,35 +17,34 @@ int main(void)
 	while(true)
 	{
 		char *user_input;
-		char *line = NULL;
-		size_t line_size =0;
-		ssize_t line_len, input_bytes;
-		int arg_count, x;
-		char *args[BUFFER_SIZE / 2 + 1]; /*array to store arguments*/
+		/*char *line = NULL;*/
+		/*size_t line_size =0;*/
+		/*ssize_t line_len*/ 
+		ssize_t input_bytes;
+		int args_count, x;
+		char *argsv[BUFFER_SIZE / 2 + 1]; /*array to store arguments*/
 
 		capture_input(&user_input, &input_bytes);
 
-		line_len = get_line(user_input, input_bytes, &line, &line_size);
+		/*line_len = get_line(user_input, input_bytes, &line, &line_size);*/
 
 		/*testing get_line*/
-		printf("Line read: %s\n", line);
-		printf("Line length: %ld\n", line_len);
+		/*printf("Line read: %s\n", line);*/
+		/*printf("Line length: %ld\n", line_len);*/
 		
-		tokenize_input(line, args, &arg_count);
-		/*testing tokenize_input*/
-		for (x = 0; x < arg_count; x++)
+		tokenize_input(user_input, argsv, &args_count);
+		if (args_count > 0)
 		{
-			printf("Argument %d: %s\n", (x + 1), args[x]); 
+			printf("Number of arguments: %d\n", args_count);
+			for (x = 0; x < args_count; x++)
+			{
+				printf("argsv[%d]; %s\n", x, argsv[x]);
+			}
+			get_path(argsv, args_count);
 		}
-		printf("Number of arguments: %d\n", arg_count);
-		
-		get_path(args, &arg_count);
-		/*testing get_path function*/
-		printf("handle_path called\n");
-
-		execute_command(user_input);
+		/*execute_command(user_input)*/;
 		free(user_input);
-		free(line);
+		/*free(line);*/
 	}
 	return (0);
 }
