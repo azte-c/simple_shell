@@ -16,7 +16,7 @@ void exit_shell(void)
 {
 	char exit_output[] = "Exiting the shell ... \n";
 
-	write(STDOUT_FILENO, exit_output, sizeof(exit_outpu    t) - 1);
+	write(STDOUT_FILENO, exit_output, sizeof(exit_output) - 1);
 	exit(0);
 }
 

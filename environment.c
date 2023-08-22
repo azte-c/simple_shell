@@ -1,4 +1,7 @@
 #include "shell.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 
 void _environment(void);
 
@@ -9,7 +12,7 @@ void _environment(void);
  */
 
 
-char *getenv(char *env_variable)
+char *custom_getenv(char *env_variable)
 {
 	int x, y;
 	int status;
@@ -18,7 +21,7 @@ char *getenv(char *env_variable)
 	while (environ[x])
 	{
 		status = 1;
-		for (y = 0; environ[x][y] != '='; j++)
+		for (y = 0; environ[x][y] != '='; y++)
 		{
 			if (environ[x][y] != env_variable[y])
 				status = 0;
@@ -44,4 +47,5 @@ void _environment(void)
 		printf("%s\n", environ[x]);
 		x++;
 	}
+return (0);
 }

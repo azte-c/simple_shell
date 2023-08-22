@@ -8,10 +8,10 @@ typedef struct PathNode {
 	struct PathNode *next;
 } PathNode;
 
-int get_path( char **args, char )
+int main (void)
 {
 	/*below we can use arg_vectors*/
-	const char *commands[] = {"pwd" ,"ls"};
+	const char *commands[] = { "pwd"};
 	/*the getenve function */
 	char *path  = getenv("PATH");
 	pid_t child_pid;
@@ -19,7 +19,6 @@ int get_path( char **args, char )
 	char *path_tokens = strtok(path_copy, ":");
 	int i;
 	PathNode *head = NULL;
-	PathNode *current;
 	/*the problem with the new line might be here*/
 	while (path_tokens != NULL)
 	{
@@ -35,7 +34,7 @@ int get_path( char **args, char )
 
 	for ( i = 0; (size_t)i < sizeof(commands) / sizeof(commands[0]); i++)
 	{
-		current = head;
+		 PathNode *current = head;
 
 		while (current != NULL)
 		{
@@ -74,4 +73,4 @@ int get_path( char **args, char )
 	free(path_copy);
 
 	return (0);
-}
+
