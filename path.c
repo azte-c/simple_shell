@@ -19,7 +19,7 @@ void get_path(char *argsv[], int *args_count)
 	if (path == NULL)
 	{
 		perror("getenv");
-		exit(-1);
+		exit(EXIT_FAILURE);
 	}
 
 	delimiter = ":";

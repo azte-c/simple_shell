@@ -5,6 +5,9 @@
 extern char **environ;
 
 #include "shell.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 
 void _environment(void);
 
@@ -15,7 +18,11 @@ void _environment(void);
  */
 
 
+<<<<<<< HEAD
 char *get_env(char *env_variable)
+=======
+char *custom_getenv(char *env_variable)
+>>>>>>> cb5ea335ba7d376c896d38a489ace52680064583
 {
 	int x, y;
 	int status;
@@ -53,4 +60,5 @@ void _environment(void)
 		write(STDOUT_FILENO, "\n", 1);
 		x++;
 	}
+return (0);
 }

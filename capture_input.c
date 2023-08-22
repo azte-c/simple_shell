@@ -9,6 +9,21 @@
 #define BUFFER_SIZE 1024
 
 /**
+<<<<<<< HEAD
+=======
+  *exit_shell - exits the shell
+*/
+
+void exit_shell(void)
+{
+	char exit_output[] = "Exiting the shell ... \n";
+
+	write(STDOUT_FILENO, exit_output, sizeof(exit_output) - 1);
+	exit(0);
+}
+
+/**
+>>>>>>> cb5ea335ba7d376c896d38a489ace52680064583
  *capture_input - prompts the user and captures the input
  *@user_input_ptr:pointer to the user input
  *@input_bytes_ptr: pointer to the input bytes
