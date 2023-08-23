@@ -14,15 +14,9 @@ void _environment(void);
 /**
  * custom_getenv - gets the environment variables
  * @env_variable: it is an environment variable
- * Return: contents of the variable
  */
 
-
-/*<<<<<<< HEAD*/
-/*char *get_env(char *env_variable)*/
-/*=======*/
 char *custom_getenv(char *env_variable)
-/*>>>>>>> cb5ea335ba7d376c896d38a489ace52680064583*/
 {
 	int x, y;
 	int status;
@@ -60,5 +54,4 @@ void _environment(void)
 		write(STDOUT_FILENO, "\n", 1);
 		x++;
 	}
-return (0);
 }

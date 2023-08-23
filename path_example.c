@@ -3,18 +3,16 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+
 typedef struct PathNode
 {
 	char *path;
 	struct PathNode *next;
 } PathNode;
 
-
-int get_path(char **argsv, int args_count)
+int get_path(char **argsv, int *args_count)
 {
 
-int get_path( char **args, char )
-{
 	/*below we can use arg_vectors*/
 	const char *commands[] = {"pwd", "ls"};
 	/*the getenve function */
@@ -26,10 +24,12 @@ int get_path( char **args, char )
 	int i;
 	PathNode *head = NULL;
 	PathNode *current;
+
 	/*the problem with the new line might be here*/
 	while (path_tokens != NULL)
 	{
 		PathNode *new_node = malloc(sizeof(PathNode));
+
 		new_node->path = path_tokens;
 		new_node->next = head;
 		head = new_node;
@@ -46,8 +46,8 @@ int get_path( char **args, char )
 		while (current != NULL)
 		{
 			char full_path[300];
+
 			snprintf(full_path, sizeof(full_path), "%s/%s", current->path, argsv[i]);
-			
 			if (access(full_path, X_OK) == 0)
 			{
 				child_pid = fork();
@@ -62,7 +62,6 @@ int get_path( char **args, char )
 					perror("fork");
 					exit(-1);
 				}
-				
 				printf("found executable: %s \n", full_path);
 				break;
 			}
@@ -75,9 +74,10 @@ int get_path( char **args, char )
 	/*free linked list memory*/
 	current = head;
 
-	while (current != NULL)	
+	while (current != NULL)
 	{
 		PathNode *temp = current;
+
 		current = current->next;
 		free(temp);
 	}

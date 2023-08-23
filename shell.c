@@ -40,7 +40,7 @@ int main(void)
 			{
 				printf("argsv[%d]; %s\n", x, argsv[x]);
 			}
-			get_path(argsv, args_count);
+			get_path(argsv, &args_count);
 		}
 		/*execute_command(user_input);*/
 		free(user_input);
