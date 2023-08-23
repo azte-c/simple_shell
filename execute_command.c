@@ -37,15 +37,15 @@ void execute_command(char *user_input)
 		arguments[0] = user_input;
 		arguments[1] = NULL;
 /*execve function replaces  current process with the specified command */
-		execve(user_input, arguments, NULL);
+		execve(user_input, arguments, environ);
 		perror("execve");
 		exit(-1);
-		free(*arguments);
+		free(arguments);
 	}
 /*this block is executed by the parent and waits for chiid to finish */
 
 	else
 	{
-		wait(NULL);
+		waitpid(process_id, NULL, 0);
 	}
 }
