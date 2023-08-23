@@ -33,7 +33,7 @@ int  execute_command(char *arguments, char **args_array)
 		command_path = path_location(command);
 		if (!command_path)
 		{
-			fprintf(stderr, "%s: 1 : %s: not found\n", arguments, command);
+			fprintf(stderr, "%s: No such file or directory\n", arguments);
 			return (0);
 		}
 		process_id = fork();
