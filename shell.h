@@ -3,8 +3,8 @@
 
 #include <unistd.h>
 #include <stddef.h>
-/* the ssize_t type an error message*/
 
+extern char **environ;
 void capture_input(char **user_input_ptr, ssize_t *input_bytes_ptr);
 void execute_command(char *user_input);
 ssize_t get_line(char *captured_input, size_t buffer_size,
@@ -15,11 +15,21 @@ void exit_shell(void);
 void _environment(void);
 char *get_env(char *env_variable);
 void exit_shell(void);
+/**
+ * struct PathNode - name
+ * @path: path to executable
+ * @next: pointer to next node
+ */
 
-typedef struct PathNode
+struct PathNode
 {
 	char *path;
 	struct PathNode *next;
-} PathNode;
+};
+
+/**
+ * PathNode - typedef for the struct PathNode
+ */
+typedef struct PathNode PathNode;
 
 #endif

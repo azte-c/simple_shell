@@ -1,19 +1,17 @@
 #include <string.h>
 #include <unistd.h>
 #include <stdlib.h>
-
-extern char **environ;
-
 #include "shell.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 
 void _environment(void);
-
+char **environ = NULL;
 /**
  * custom_getenv - gets the environment variables
  * @env_variable: it is an environment variable
+ * Return: a pointer to character in environ array
  */
 
 char *custom_getenv(char *env_variable)
