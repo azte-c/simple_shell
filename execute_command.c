@@ -39,8 +39,8 @@ void execute_command(char *user_input)
 /*execve function replaces  current process with the specified command */
 		execve(user_input, arguments, environ);
 		perror("execve");
-		exit(-1);
 		free(arguments);
+		exit(-1);
 	}
 /*this block is executed by the parent and waits for chiid to finish */
 
