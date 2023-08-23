@@ -9,8 +9,6 @@
 #define BUFFER_SIZE 1024
 
 /**
-<<<<<<< HEAD
-=======
   *exit_shell - exits the shell
 */
 
@@ -23,21 +21,15 @@ void exit_shell(void)
 }
 
 /**
->>>>>>> cb5ea335ba7d376c896d38a489ace52680064583
  *capture_input - prompts the user and captures the input
  *@user_input_ptr:pointer to the user input
  *@input_bytes_ptr: pointer to the input bytes
  */
 void capture_input(char **user_input_ptr, ssize_t *input_bytes_ptr)
 {
-	/*promp_user will store what to display to user*/
 	char *user_input;/*user_input will hold input from user*/
 	ssize_t input_bytes;/* store the number of bytes read*/
 	const char *prompt = "# ";
-
-	/*prompt_user = (char *)malloc(sizeof(char) * 2);*/
-	/*prompt_user[0] = '#';*/
-	/*prompt_user[1] = '\0';*/
 
 	write(STDOUT_FILENO, prompt, 2);
 	user_input = (char *)malloc(sizeof(char) * BUFFER_SIZE);
@@ -52,14 +44,12 @@ void capture_input(char **user_input_ptr, ssize_t *input_bytes_ptr)
 	if (input_bytes == 0)
 	{
 		write(STDOUT_FILENO, "\n", 1);
-		/*free(prompt_user);*/
 		free(user_input);
 		exit(0);
 	}
 	else if (input_bytes == -1)
 	{
 		perror("read");
-		/*free(prompt_user);*/
 		free(user_input);
 		exit(-1);
 	}
@@ -67,8 +57,7 @@ void capture_input(char **user_input_ptr, ssize_t *input_bytes_ptr)
 
 	if (strcmp(user_input, "exit") == 0)
 		exit_shell();
-	
-	/*free(prompt_user);*/
+
 	*user_input_ptr = user_input;
 	*input_bytes_ptr = input_bytes;
 }
