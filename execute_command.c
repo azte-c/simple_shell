@@ -30,7 +30,7 @@ int  execute_command(char *arguments, char **args_array)
 		exit(0);
 	else
 	{
-		command_path = location(command);
+		command_path = path_location(command);
 		if (!command_path)
 		{
 			fprintf(stderr, "%s: 1 : %s: not found\n", arguments, command);

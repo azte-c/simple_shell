@@ -26,10 +26,10 @@ char *path_location(const char *command)
 	if (!path_environment)
 		return (NULL);
 	pathway = strdup(path_environment);
-	tokens = strtok(path, delimitor);
+	tokens = strtok(pathway, delimitor);
 	while (tokens)
 	{
-		length = strlen(token) + strlen(command) + 2;
+		length = strlen(tokens) + strlen(command) + 2;
 		full_path = malloc(sizeof(char) * length);
 		if (!full_path)
 		{
@@ -43,7 +43,7 @@ char *path_location(const char *command)
 			return (full_path);
 		}
 		free(full_path);
-		token = strtok(NULL, delimitor);
+		tokens = strtok(NULL, delimitor);
 	}
 	free(pathway);
 	return (NULL);
