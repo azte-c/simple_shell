@@ -14,7 +14,7 @@ int get_path(char **argsv, int *args_count)
 {
 
 	/*below we can use arg_vectors*/
-	const char *commands[] = {"pwd", "ls"};
+	/*const char *commands[] = {"pwd", "ls"};*/
 	/*the getenve function */
 
 	char *path  = getenv("PATH");
@@ -39,7 +39,7 @@ int get_path(char **argsv, int *args_count)
 
 	/*search for executable in each path */
 
-	for (i = 0; i < args_count; i++)
+	for (i = 0; i < *args_count; i++)
 	{
 		current = head;
 
