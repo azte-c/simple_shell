@@ -3,21 +3,22 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-typedef struct PathNode {
+typedef struct PathNode
+{
 	char *path;
 	struct PathNode *next;
 } PathNode;
 
-<<<<<<< HEAD
+
 int get_path(char **argsv, int args_count)
 {
-=======
+
 int get_path( char **args, char )
 {
 	/*below we can use arg_vectors*/
-	const char *commands[] = {"pwd" ,"ls"};
+	const char *commands[] = {"pwd", "ls"};
 	/*the getenve function */
->>>>>>> cb5ea335ba7d376c896d38a489ace52680064583
+
 	char *path  = getenv("PATH");
 	pid_t child_pid;
 	char *path_copy = strdup(path);
@@ -38,7 +39,7 @@ int get_path( char **args, char )
 
 	/*search for executable in each path */
 
-	for ( i = 0; i < args_count; i++)
+	for (i = 0; i < args_count; i++)
 	{
 		current = head;
 
@@ -46,15 +47,15 @@ int get_path( char **args, char )
 		{
 			char full_path[300];
 			snprintf(full_path, sizeof(full_path), "%s/%s", current->path, argsv[i]);
-
+			
 			if (access(full_path, X_OK) == 0)
 			{
 				child_pid = fork();
 				if (child_pid == 0)
 				{
-					execl(full_path, argsv[i], NULL);
-					perror("exec");
-					exit(-1);
+				execl(full_path, argsv[i], NULL);
+				perror("exec");
+				exit(-1);
 				}
 				else if (child_pid == -1)
 				{
@@ -73,11 +74,8 @@ int get_path( char **args, char )
 	}
 	/*free linked list memory*/
 	current = head;
-<<<<<<< HEAD
 
-=======
->>>>>>> cb5ea335ba7d376c896d38a489ace52680064583
-	while (current != NULL)
+	while (current != NULL)	
 	{
 		PathNode *temp = current;
 		current = current->next;
