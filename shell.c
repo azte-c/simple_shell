@@ -32,7 +32,6 @@ int main(int argc, char **argv)
 			free(buffer);
 			exit(0);
 		}
-		/*function*/
 		arguments = tokenize_input(buffer);
 		if (arguments == NULL)
 		{
