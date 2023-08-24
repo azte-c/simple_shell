@@ -14,19 +14,19 @@
 
 int  execute_command(char *arguments, char **args_array)
 {
-	char *command_path;
-	char *command;
+	char *command_path;/*the path to the command is stored here*/
+	char *command;/*the command itself*/
 	pid_t process_id;
 	int status;
-
+/*checks if the array containing the commands is empty*/
 	if (!args_array[0])
 	{
 		return (0);
 	}
-	command = args_array[0];
-	if (strcmp(command, "env") == 0)
-		print_environment();
-	else if (strcmp(command, "exit") == 0)
+	command = args_array[0];/*puts in the initial command*/
+	if (strcmp(command, "env") == 0)/*test if command is env*/
+		print_environment();/*calls the function*/
+	else if (strcmp(command, "exit") == 0)/*test if command is exit*/
 		exit(0);
 	else
 	{
