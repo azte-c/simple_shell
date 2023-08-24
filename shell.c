@@ -17,12 +17,11 @@
 int main(int argc, char **argv)
 {
 
-char **arguments;
-ssize_t status;
-char *buffer = NULL;
-size_t length;
-int x;
-
+	char **arguments;
+	ssize_t status;
+	char *buffer = NULL;
+	size_t length;
+	int x ;
 
 	while (1)
 	{
@@ -33,27 +32,27 @@ int x;
 			free(buffer);
 			exit(0);
 		}
-/*function*/
+		/*function*/
 		arguments = tokenize_input(buffer);
 		if (arguments == NULL)
 		{
 			continue;
 		}
-/*function*/
+		/*function*/
 		execute_command(argv[0], arguments);
+		free(arguments);
 		buffer = NULL;
 		length = 0;
 		free(buffer);
 	}
-if (arguments)
+	if (arguments)
 	{
-	for (x = 0; arguments[x] != NULL; x++)
-	{
-		free(arguments[x]);
-	}
+		for (x = 0; arguments[x] != NULL; x++)
+		{
+			free(arguments[x]);
+		}
 	free(arguments);
-}
+	}
 	return (0);
 argc++;
-argv[x] = "x";
 }
