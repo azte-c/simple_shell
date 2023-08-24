@@ -22,6 +22,7 @@ int main(int argc, char **argv)
 	char *buffer = NULL;
 	size_t length;
 	int x;
+	char *full_path = path_location(argv[0]);
 
 	while (1)
 	{
@@ -38,7 +39,14 @@ int main(int argc, char **argv)
 		{
 			continue;
 		}
-		execute_command(argv[0], arguments);
+		if (full_path != NULL)
+		{
+			execute_command(full_path, arguments);
+		}
+		else
+		{
+			printf("Path not found. \n");
+		}
 		for (x = 0; arguments[x] != NULL; x++)
 			free(arguments[x]);
 		free(arguments);
