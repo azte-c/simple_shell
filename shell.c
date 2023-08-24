@@ -38,12 +38,13 @@ int main(int argc, char **argv)
 		{
 			continue;
 		}
-		/*function*/
 		execute_command(argv[0], arguments);
+		for (x = 0; arguments[x] != NULL; x++)
+			free(arguments[x]);
 		free(arguments);
-		buffer = NULL;
-		length = 0;
 		free(buffer);
+		length = 0;
+		buffer = NULL;
 	}
 	if (arguments)
 	{
