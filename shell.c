@@ -22,7 +22,6 @@ int main(int argc, char **argv)
 	char *buffer = NULL;
 	size_t length;
 	int x;
-	char *full_path = path_location(argv[0]);
 
 	while (1)
 	{
@@ -39,10 +38,8 @@ int main(int argc, char **argv)
 		{
 			continue;
 		}
-		if (full_path)
-		{
-			execute_command(full_path, arguments);
-		}
+		execute_command(full_path, arguments);
+
 		for (x = 0; arguments[x] != NULL; x++)
 			free(arguments[x]);
 		free(arguments);
