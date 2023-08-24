@@ -14,20 +14,22 @@
 
 int  execute_command(char *arguments, char **args_array)
 {
-	char *command_path;/*the path to the command is stored here*/
-	char *command;/*the command itself*/
+	char *command_path, *command;/*the path to the command is stored here*/
 	pid_t process_id;
-	int status;
-/*checks if the array containing the commands is empty*/
+	int status, x;
+
 	if (!args_array[0])
-	{
 		return (0);
-	}
 	command = args_array[0];/*puts in the initial command*/
 	if (strcmp(command, "env") == 0)/*test if command is env*/
 		print_environment();/*calls the function*/
-	else if (strcmp(command, "exit") == 0)/*test if command is exit*/
+	else if (strcmp(command, "exit") == 0)
+	{
+		for (x = 0; args_array[x] != NULL; x++)
+			free(args_array[x]);
+		free(args_array);
 		exit(0);
+	}
 	else
 	{
 		command_path = path_location(command);
@@ -47,7 +49,7 @@ int  execute_command(char *arguments, char **args_array)
 				exit(0);
 			}
 		}
-		else if (waitpid(process_id, &status, 0) == -1)
+		else if (wait(&status) == -1)
 			perror("Error");
 		free(command_path);
 	}
