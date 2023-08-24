@@ -37,7 +37,7 @@ int main(int argc, char **argv)
 		{
 			continue;
 		}
-		execute_command(full_path, arguments);
+		execute_command(argv[0], arguments);
 
 		for (x = 0; arguments[x] != NULL; x++)
 			free(arguments[x]);
