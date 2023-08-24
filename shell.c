@@ -39,13 +39,9 @@ int main(int argc, char **argv)
 		{
 			continue;
 		}
-		if (full_path != NULL)
+		if (full_path)
 		{
 			execute_command(full_path, arguments);
-		}
-		else
-		{
-			printf("Path not found. \n");
 		}
 		for (x = 0; arguments[x] != NULL; x++)
 			free(arguments[x]);
