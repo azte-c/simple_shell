@@ -21,7 +21,7 @@ int main(int argc, char **argv)
 	ssize_t status;
 	char *buffer = NULL;
 	size_t length;
-	int x ;
+	int x;
 
 	while (1)
 	{
