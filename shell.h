@@ -3,8 +3,8 @@
 
 #include <unistd.h>
 #include <stddef.h>
-
-extern char **environment;
+#include <stdlib.h>
+extern char **environ;
 
 int execute_command(char *arguments, char **args_array);
 char *path_location(const char *command);
