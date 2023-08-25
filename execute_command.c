@@ -16,7 +16,7 @@ int  execute_command(char *arguments, char **args_array)
 {
 	char *command_path, *command;/*the path to the command is stored here*/
 	pid_t process_id;
-	int status, x;
+	int status;
 
 	if (!args_array[0])
 		return (0);
@@ -25,10 +25,7 @@ int  execute_command(char *arguments, char **args_array)
 		print_environment();/*calls the function*/
 	else if (strcmp(command, "exit") == 0)
 	{
-		for (x = 0; args_array[x] != NULL; x++)
-			free(args_array[x]);
-		free(args_array);
-		exit(0);
+		exit_shell();
 	}
 	else
 	{
