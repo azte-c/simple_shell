@@ -51,7 +51,6 @@ int main(int argc, char **argv)
 		}
 	free(arguments);
 	}
-free(arguments);
 	return (0);
 argc++;
 }
