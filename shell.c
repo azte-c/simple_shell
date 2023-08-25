@@ -25,7 +25,7 @@ int main(int argc, char **argv)
 	while (1)
 	{
 		prompt_user();/*function*/
-		status = get_line(buffer, length, &buffer, &length); /**change made here*/
+		status = getline(&buffer, &length, stdin); /*change made here*/
 		if (status == -1)
 		{
 			free(buffer);
