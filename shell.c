@@ -46,15 +46,15 @@ int main(int argc, char **argv)
 		length = 0;
 		buffer = NULL;
 	}
-/*	if (arguments)
-	{
-		for (x = 0; arguments[x] != NULL; x++)
-		{
-			free(arguments[x]);
-		}
-	free(arguments);
-	}*/
-
+/**	if (arguments)
+ *	{
+ *		for (x = 0; arguments[x] != NULL; x++)
+ *		{
+ *			free(arguments[x]);
+ *		}
+ *	free(arguments);
+ *	}
+ */
 free(arguments);
 	return (0);
 argc++;
