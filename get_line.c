@@ -45,7 +45,6 @@ ssize_t get_line(char *captured_input, size_t buffer_size,
 	}
 
 	new_line[length_of_line] = '\0';   /* Null terminate the line */
-	
 	free(*line_ptr);                /* Free the old buffer */
 
 	*line_ptr = new_line;            /* Update buffer */
