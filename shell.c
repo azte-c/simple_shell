@@ -16,7 +16,6 @@
 
 int main(int argc, char **argv)
 {
-
 	char **arguments = argv;
 	ssize_t status;
 	char *buffer = NULL;
@@ -26,18 +25,18 @@ int main(int argc, char **argv)
 	while (1)
 	{
 		prompt_user();/*function*/
-		status = getline(&buffer, &length, stdin);
+		status = get_line(buffer, length, &buffer, &length); /**change made here*/
 		if (status == -1)
 		{
 			free(buffer);
-			exit(0);
+			exit(1);                                 /**change made here*/
 		}
 		arguments = tokenize_input(buffer);
 		if (arguments == NULL)
 		{
 			continue;
 		}
-		execute_command(arguments[0], arguments);
+		execute_command(arguments[0], arguments);          /**change made here*/
 
 		for (x = 0; arguments[x] != NULL; x++)
 			free(arguments[x]);
