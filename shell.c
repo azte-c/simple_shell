@@ -29,7 +29,7 @@ int main(int argc, char **argv)
 		if (status == -1)
 		{
 			free(buffer);
-			exit(1);                                 /**change made here*/
+			exit(0);                                 /**change made here*/
 		}
 		arguments = tokenize_input(buffer);
 		if (arguments == NULL)
